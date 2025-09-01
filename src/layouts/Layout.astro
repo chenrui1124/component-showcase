@@ -1,4 +1,8 @@
 ---
+import '@/styles/global.css'
+
+import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
+
 interface Props {
   title?: string
 }
@@ -13,7 +17,14 @@ const { title } = Astro.props
     <!-- <link rel='icon' type='image/svg+xml' href='/favicon.svg' /> -->
     <title>{title}</title>
   </head>
-  <body>
-    <slot />
+  <body class='bg-sur w-screen h-screen overflow-y-auto text-on-sur text-sm/normal'>
+    <header
+      class='pointer-events-none fixed top-0 inset-x-0 *:pointer-events-auto h-15 flex gap-3 items-center px-3 bg-sur/50 backdrop-blur-md'
+    >
+      <ThemeSwitcher client:only />
+    </header>
+    <main class="size-full">
+      <slot />
+    </main>
   </body>
 </html>
