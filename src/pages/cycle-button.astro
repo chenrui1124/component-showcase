@@ -1,0 +1,21 @@
+---
+import type { StoryMeta } from '@/types'
+
+import CopyButton from '@/components/CopyButton.vue'
+import Layout from '@/layouts/Layout.astro'
+import VueCycleButton from '@/stories/VueCycleButton.vue'
+import { Framework } from '@/types'
+import VueCycleButtonCode from '@/stories/VueCycleButton.vue?raw'
+
+export const meta: StoryMeta = {
+  name: 'Cycle Button',
+  framework: Framework.Vue,
+}
+---
+
+<Layout>
+  <div class='p-3 rounded-xl border border-otl h-60 w-45 flex items-end'>
+    <VueCycleButton client:only />
+  </div>
+  <CopyButton client:only code={VueCycleButtonCode} />
+</Layout>
