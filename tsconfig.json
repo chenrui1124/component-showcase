@@ -5,6 +5,8 @@
   "compilerOptions": {
     "jsx": "preserve",
     "jsxImportSource": "react",
+    "allowJs": true,
+    "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
