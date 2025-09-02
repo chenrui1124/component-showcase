@@ -31,9 +31,11 @@
     "@astrojs/vue": "^5.1.0",
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
+    "@vueuse/core": "^13.9.0",
     "astro": "^5.13.5",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-use": "^17.6.0",
     "vue": "^3.5.20"
   },
   "devDependencies": {
