@@ -1,10 +1,17 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import type { StoryMeta } from '@/types'
+
 import IconButton from './IconButton.vue'
+import { useToggle } from '@vueuse/core'
 
-const state = ref(false)
+defineProps<{
+  stories: {
+    url: string
+    meta: StoryMeta
+  }[]
+}>()
 
-const toggle = () => (state.value = !state.value)
+const [on, toggle] = useToggle()
 </script>
 
 <template>
@@ -14,12 +21,12 @@ const toggle = () => (state.value = !state.value)
     leave-active-class="transition duration-300"
     leave-to-class="opacity-0"
   >
-    <div v-if="state" class="fixed inset-0 h-screen w-screen bg-on-sur/25"></div>
+    <div v-if="on" class="fixed inset-0 h-screen w-screen bg-on-sur/25"></div>
   </Transition>
   <div class="relative size-fit">
     <IconButton
-      @click="toggle"
-      :icon="state ? 'i-[fluent--dismiss-24-filled]' : 'i-[fluent--list-24-filled]'"
+      @click="toggle()"
+      :icon="on ? 'i-[fluent--dismiss-24-filled]' : 'i-[fluent--list-24-filled]'"
     />
     <Transition
       enter-from-class="grid-rows-[0fr]"
@@ -30,13 +37,27 @@ const toggle = () => (state.value = !state.value)
       leave-to-class="grid-rows-[0fr]"
     >
       <div
-        v-if="state"
+        v-if="on"
         class="absolute top-full left-0 mt-1 grid w-80 max-w-[calc(100vw_-_1.5rem)] grid-cols-1 rounded-[1.25rem] bg-pri text-on-pri drop-shadow-md"
       >
         <div class="overflow-hidden">
-          <div class="p-1">
-            <a></a>
-          </div>
+          <ul class="grid grid-cols-[1fr_min-content] gap-x-3 p-1">
+            <li class="contents">
+              <a
+                v-for="{ url, meta } of stories"
+                :key="url"
+                :href="url"
+                class="col-span-2 grid h-8 grid-cols-subgrid items-center rounded-full font-code"
+              >
+                <span class="px-3">
+                  {{ meta.name }}
+                </span>
+                <span class="col-start-2 h-full rounded-full bg-on-pri/10 px-3 text-sm/8 uppercase">
+                  {{ meta.framework }}
+                </span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </Transition>
