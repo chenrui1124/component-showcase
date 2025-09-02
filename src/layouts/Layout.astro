@@ -25,7 +25,7 @@ const stories = Object.entries<AstroInstance & { meta: StoryMeta }>(
     <meta charset='utf-8' />
     <meta name='viewport' content='width=device-width' />
     <!-- <link rel='icon' type='image/svg+xml' href='/favicon.svg' /> -->
-    <title>{title}</title>
+    <title>Component Showcase{title ? ' - ' : ''}{title}</title>
   </head>
   <body class='bg-sur w-screen h-screen overflow-y-auto text-on-sur text-sm/normal pattern-grid'>
     <header
