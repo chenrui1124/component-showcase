@@ -7,6 +7,8 @@
 @theme {
   --font-code: 'Geist Mono', 'SF Mono', 'Noto Sans Mono', var(--font-mono), var(--font-sans);
 
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+
   --color-sur: light-dark(oklch(1 0 89.876), oklch(0.169 0.002 286.177));
   --color-on-sur: light-dark(oklch(0.159 0 89.876), oklch(0.985 0 89.876));
 

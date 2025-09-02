@@ -29,7 +29,7 @@ const stories = Object.entries<AstroInstance & { meta: StoryMeta }>(
   </head>
   <body class='bg-sur w-screen h-screen overflow-y-auto text-on-sur text-sm/normal'>
     <header
-      class='pointer-events-none fixed top-0 inset-x-0 *:pointer-events-auto h-15 flex gap-3 items-center px-3 bg-sur/50 backdrop-blur-md'
+      class='pointer-events-none fixed top-0 inset-x-0 *:pointer-events-auto h-15 flex gap-3 items-center px-3'
     >
       <Catalog client:only stories={stories} />
       <ThemeSwitcher client:only />

@@ -17,8 +17,8 @@ const [on, toggle] = useToggle()
 <template>
   <Transition
     enter-from-class="opacity-0"
-    enter-active-class="transition duration-300"
-    leave-active-class="transition duration-300"
+    enter-active-class="transition duration-300 ease-out-quart"
+    leave-active-class="transition duration-300 ease-out-quart"
     leave-to-class="opacity-0"
   >
     <div v-if="on" class="fixed inset-0 h-screen w-screen bg-on-sur/25"></div>
@@ -30,10 +30,10 @@ const [on, toggle] = useToggle()
     />
     <Transition
       enter-from-class="grid-rows-[0fr]"
-      enter-active-class="transition-all duration-300"
+      enter-active-class="transition-all duration-300 ease-out-quart"
       enter-to-class="grid-rows-[1fr]"
       leave-from-class="grid-rows-[1fr]"
-      leave-active-class="transition-all duration-300"
+      leave-active-class="transition-all duration-300 ease-out-quart"
       leave-to-class="grid-rows-[0fr]"
     >
       <div
