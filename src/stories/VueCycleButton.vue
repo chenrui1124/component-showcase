@@ -26,7 +26,7 @@ const nextMode = () => {
   currentIndex.value = (currentIndex.value + 1) % modes.length
   toggle(true)
   clearTimeout(timer)
-  timer = setTimeout(() => toggle(false), 2400)
+  timer = setTimeout(() => toggle(false), 1500)
 }
 </script>
 
@@ -53,7 +53,7 @@ const nextMode = () => {
     <Transition
       enter-from-class="scale-0 translate-4.5"
       enter-active-class="transition duration-300"
-      leave-active-class="transition duration-200"
+      leave-active-class="transition duration-300"
       leave-to-class="scale-0 translate-4.5"
     >
       <div

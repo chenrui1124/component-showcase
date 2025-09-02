@@ -46,3 +46,19 @@
     @apply z-10 outline-2 outline-offset-2 outline-solid;
   }
 }
+
+@utility pattern-grid {
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-on-sur), transparent 90%) 0px 1px,
+      transparent 1px 100px
+    ),
+    repeating-linear-gradient(
+      to right,
+      color-mix(in oklab, var(--color-on-sur), transparent 90%) 0px 1px,
+      transparent 1px 100px
+    ),
+    repeating-linear-gradient(to bottom, var(--color-otl) 0px 1px, transparent 1px 20px),
+    repeating-linear-gradient(to right, var(--color-otl) 0px 1px, transparent 1px 20px);
+}
