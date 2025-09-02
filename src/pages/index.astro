@@ -1,5 +1,19 @@
 ---
+import type { StoryMeta } from '@/types'
+import type { AstroInstance } from 'astro'
+
 import Layout from '@/layouts/Layout.astro'
+
+const stories = Object.entries<AstroInstance & { meta: StoryMeta }>(
+  import.meta.glob('../pages/*.astro', { eager: true })
+)
+  .filter(([_, instance]) => Object.hasOwn(instance, 'meta'))
+  .map(([_, { url, meta }]) => ({ url: url!, meta }))
+
+if (Astro.url.pathname === '/') {
+  const randomStory = stories[Math.floor(Math.random() * stories.length)]
+  if (randomStory) return Astro.redirect(randomStory.url)
+}
 ---
 
 <Layout>
