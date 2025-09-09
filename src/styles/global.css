@@ -25,7 +25,7 @@
 }
 
 :root {
-  &[data-theme='auto'] {
+  &[data-theme='system'] {
     color-scheme: light dark;
   }
 

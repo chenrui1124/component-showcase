@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import IconButton from './IconButton.vue'
 
 const { code } = defineProps<{
+  class?: string
   code: string
 }>()
 
@@ -20,5 +21,5 @@ async function copyToClipboard() {
 </script>
 
 <template>
-  <IconButton @click="copyToClipboard" :icon class="fixed right-3 bottom-3" />
+  <IconButton @click="copyToClipboard" :icon :class />
 </template>

@@ -1,0 +1,36 @@
+---
+import type { AstroInstance } from 'astro'
+import type { StoryMeta } from '@/types'
+
+import BaseLayout from './BaseLayout.astro'
+import ComponentCatalog from '@/components/ComponentCatalog.vue'
+import CopyCode from '@/components/CopyCode.vue'
+import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
+
+interface Props {
+  code: string
+  subtitle?: string
+}
+
+const { code, subtitle } = Astro.props
+
+const stories = Object.entries<AstroInstance & { meta: StoryMeta }>(
+  import.meta.glob('../pages/*.astro', { eager: true })
+)
+  .filter(([_, instance]) => Object.hasOwn(instance, 'meta'))
+  .map(([_, { url, meta }]) => ({ url: url!, meta }))
+---
+
+<BaseLayout subtitle={subtitle}>
+  <div class='bg-sur w-screen h-screen overflow-y-auto text-on-sur text-sm/normal pattern-grid'>
+    <header
+      class='pointer-events-none fixed top-0 inset-x-0 *:pointer-events-auto h-15 flex items-center px-3'>
+      <ComponentCatalog client:only stories={stories} currentUrl={Astro.url.pathname} />
+      <ThemeSwitcher client:only class='rounded-r-none' />
+      <CopyCode client:only code={code} class='rounded-l-none' />
+    </header>
+    <main class='size-full flex items-center justify-center'>
+      <slot />
+    </main>
+  </div>
+</BaseLayout>

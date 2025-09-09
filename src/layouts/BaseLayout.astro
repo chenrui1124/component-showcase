@@ -1,0 +1,21 @@
+---
+import '@/styles/global.css'
+
+interface Props {
+  subtitle?: string
+}
+
+const { subtitle } = Astro.props
+---
+
+<html lang=''>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width' />
+    <!-- <link rel='icon' type='image/svg+xml' href='/favicon.svg' /> -->
+    <title>{(subtitle ? subtitle + ' - ' : '') + 'Component Showcase'}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
