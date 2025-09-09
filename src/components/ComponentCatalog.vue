@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { StoryMeta } from '@/types'
 
+import { Framework } from '@/types'
 import IconButton from './IconButton.vue'
 import PopoverMenu from './PopoverMenu.vue'
 
@@ -40,7 +41,16 @@ defineProps<{
           <span class="px-3">
             {{ meta.name }}
           </span>
-          <span class="col-start-2 h-full rounded-md bg-on-pri/10 px-3 text-sm/8 uppercase">
+          <span
+            :framework="meta.framework"
+            :class="[
+              'col-start-2 h-full rounded-md px-3 text-sm/8 uppercase select-none',
+              {
+                [Framework.Vue]: 'bg-brand-vue text-on-brand-vue',
+                [Framework.React]: 'bg-brand-react text-on-brand-react',
+              }[meta.framework],
+            ]"
+          >
             {{ meta.framework }}
           </span>
         </a>
