@@ -5,6 +5,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 import VueCycleButton from '@/stories/VueCycleButton.vue'
 import code from '@/stories/VueCycleButton.vue?raw'
 import { Framework } from '@/types'
+import ResizeShowcase from '@/components/ResizeShowcase.astro'
 
 export const meta: StoryMeta = {
   name: 'Cycle Button',
@@ -13,7 +14,7 @@ export const meta: StoryMeta = {
 ---
 
 <ComponentLayout subtitle={meta.name} code={code}>
-  <div class='p-3 rounded-xl border border-otl h-60 w-45 flex items-end bg-sur'>
+  <ResizeShowcase width='45' height='60' class:list='flex items-end'>
     <VueCycleButton client:only />
-  </div>
+  </ResizeShowcase>
 </ComponentLayout>
