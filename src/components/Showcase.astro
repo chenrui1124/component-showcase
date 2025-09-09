@@ -1,0 +1,23 @@
+---
+interface Props {
+  minWidth?: string
+  minHeight?: string
+  resizable?: boolean
+  class?: string
+}
+
+const props = Astro.props
+---
+
+<div
+  style={{
+    minWidth: `calc(var(--spacing) * ${props.minWidth})`,
+    minHeight: `calc(var(--spacing) * ${props.minHeight})`,
+  }}
+  class:list={[
+    'p-1 rounded-lg border border-otl bg-sur overflow-auto',
+    props.resizable && 'resize',
+    props.class,
+  ]}>
+  <slot />
+</div>
