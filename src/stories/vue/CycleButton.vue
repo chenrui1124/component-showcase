@@ -1,29 +1,27 @@
+<script lang="ts">
+export interface CycleButtonProps {
+  items: { label: string; value: string; icon: string }[]
+  modelValue: string
+}
+</script>
+
 <script lang="ts" setup>
-import { useToggle } from '@vueuse/core'
-import { computed, ref } from 'vue'
+import { useCycleList, useToggle } from '@vueuse/core'
 
 const [on, toggle] = useToggle()
 
-const enum PlayMode {
-  Shuffle = '随机播放',
-  RepeatAll = '顺序播放',
-  RepeatOne = '单曲循环',
-}
+const { items } = defineProps<Omit<CycleButtonProps, 'modelValue'>>()
 
-const modes = [
-  { mode: PlayMode.Shuffle, icon: 'i-[fluent--arrow-shuffle-24-regular]' },
-  { mode: PlayMode.RepeatAll, icon: 'i-[fluent--arrow-repeat-all-24-regular]' },
-  { mode: PlayMode.RepeatOne, icon: 'i-[fluent--arrow-repeat-1-24-regular]' },
-] as const
+const modelValue = defineModel<CycleButtonProps['modelValue']>()
 
-const currentIndex = ref(0)
-
-const currentIcon = computed(() => modes[currentIndex.value].icon)
+const { index, state, next } = useCycleList(items, {
+  initialValue: items.find(item => item.value === modelValue.value) ?? items[0],
+})
 
 let timer: ReturnType<typeof setTimeout>
 
-const nextMode = () => {
-  currentIndex.value = (currentIndex.value + 1) % modes.length
+function nextItem() {
+  next()
   toggle(true)
   clearTimeout(timer)
   timer = setTimeout(() => toggle(false), 1500)
@@ -33,7 +31,7 @@ const nextMode = () => {
 <template>
   <div class="relative size-fit">
     <button
-      @click="nextMode"
+      @click="nextItem"
       class="inline-flex size-9 cursor-pointer items-center justify-center rounded-md transition hover:bg-on-sur/5"
     >
       <Transition
@@ -43,10 +41,10 @@ const nextMode = () => {
         leave-to-class="opacity-0"
       >
         <span
-          :key="currentIcon"
+          :key="state.icon"
           aria-hidden="true"
           class="pointer-events-none size-5"
-          :class="currentIcon"
+          :class="state.icon"
         ></span>
       </Transition>
     </button>
@@ -62,17 +60,22 @@ const nextMode = () => {
       >
         <ul class="grid grid-cols-[min-content_1fr] p-1">
           <li
-            v-for="{ mode, icon } of modes"
-            :key="mode"
-            class="col-span-2 grid h-9 grid-cols-subgrid items-center gap-x-3 px-3 transition select-none"
-            :class="{ 'text-on-pri/75': mode !== modes[currentIndex].mode }"
+            v-for="{ label, value, icon } of items"
+            :key="value"
+            :class="[
+              'col-span-2 grid h-9 grid-cols-subgrid items-center gap-x-3 px-3 transition select-none',
+              { 'text-on-pri/75': value !== modelValue },
+            ]"
           >
-            <span aria-hidden="true" class="col-start-1 -mx-1 size-4.5" :class="icon"></span>
-            <span class="col-start-2 text-nowrap">{{ mode }}</span>
+            <span
+              aria-hidden="true"
+              :class="['pointer-events-none col-start-1 -mx-1 size-4.5', icon]"
+            ></span>
+            <span class="col-start-2 text-nowrap">{{ label }}</span>
           </li>
         </ul>
         <div
-          :style="{ transform: `translateY(${currentIndex * 2.25}rem)` }"
+          :style="{ transform: `translateY(${index * 2.25}rem)` }"
           class="absolute inset-x-1 top-1 h-9 rounded-sm bg-on-pri/15 transition"
         ></div>
       </div>

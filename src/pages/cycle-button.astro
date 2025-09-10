@@ -3,8 +3,8 @@ import type { StoryMeta } from '@/types'
 
 import Showcase from '@/components/Showcase.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
-import VueCycleButton from '@/stories/VueCycleButton.vue'
-import code from '@/stories/VueCycleButton.vue?raw'
+import CycleButtonStory from '@/stories/vue/CycleButton.story.vue'
+import code from '@/stories/vue/CycleButton.vue?raw'
 import { Framework } from '@/types'
 
 export const meta: StoryMeta = {
@@ -20,7 +20,7 @@ export const meta: StoryMeta = {
     class:list='flex items-center justify-end p-3 flex-col gap-3'>
     <div class='bg-pri/5 w-full flex-1 rounded-sm'></div>
     <div class='flex items-center gap-3'>
-      <VueCycleButton client:only />
+      <CycleButtonStory client:only />
       <button type='button' class='size-9 inline-flex items-center justify-center'>
         <span aria-hidden='true' class='size-4.5 i-[fluent--previous-24-filled]'></span>
       </button>
