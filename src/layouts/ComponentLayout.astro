@@ -24,10 +24,15 @@ const stories = Object.entries<AstroInstance & { meta: StoryMeta }>(
 <BaseLayout subtitle={subtitle}>
   <div class='bg-sur w-screen h-screen overflow-y-auto text-on-sur text-sm/normal pattern-grid'>
     <header
-      class='pointer-events-none fixed top-0 inset-x-0 *:pointer-events-auto h-15 flex items-center px-3'>
-      <ComponentCatalog client:only stories={stories} currentUrl={Astro.url.pathname} />
+      class='pointer-events-none fixed justify-end top-0 inset-x-0 *:pointer-events-auto h-15 flex items-center px-3'>
       <ThemeSwitcher client:only class='rounded-r-none' />
-      <CopyCode client:only code={code} class='rounded-l-none' />
+      <CopyCode client:only code={code} class='rounded-l-none rounded-r-none' />
+      <ComponentCatalog
+        client:only
+        stories={stories}
+        currentUrl={Astro.url.pathname}
+        class='rounded-l-none'
+      />
     </header>
     <main class='size-full flex items-center justify-center'>
       <slot />

@@ -33,7 +33,7 @@ const [on, toggle] = useToggle()
         v-if="on"
         :class="[
           'absolute top-full mt-1 w-80 max-w-[calc(100vw_-_1.5rem)] rounded-lg bg-pri text-on-pri drop-shadow-md',
-          { start: 'origin-top-left', end: 'origin-top-right' }[location],
+          { start: 'left-0 origin-top-left', end: 'right-0 origin-top-right' }[location],
         ]"
       >
         <slot></slot>

@@ -24,5 +24,5 @@ function toggleColorMode() {
 </script>
 
 <template>
-  <IconButton @click="toggleColorMode" :icon class="ml-auto" />
+  <IconButton @click="toggleColorMode" :icon />
 </template>

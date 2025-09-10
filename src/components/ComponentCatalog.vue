@@ -16,7 +16,7 @@ defineProps<{
 </script>
 
 <template>
-  <PopoverMenu location="start">
+  <PopoverMenu location="end">
     <template #trigger="{ on, toggle }">
       <IconButton
         @click="toggle()"
@@ -31,12 +31,12 @@ defineProps<{
           :key="url"
           :href="url"
           :tabindex="currentUrl === url ? -1 : 0"
-          class="col-span-2 grid h-8 grid-cols-subgrid items-center rounded-full transition-colors hover:text-on-pri focus-visible:preset-outline"
-          :class="
+          :class="[
+            'col-span-2 grid h-8 grid-cols-subgrid items-center rounded-full transition-colors hover:text-on-pri focus-visible:preset-outline',
             currentUrl === url
               ? 'pointer-events-none text-on-pri'
-              : 'text-on-pri/75 hover:text-on-pri'
-          "
+              : 'text-on-pri/75 hover:text-on-pri',
+          ]"
         >
           <span class="px-3">
             {{ meta.name }}
