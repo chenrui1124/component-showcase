@@ -1,0 +1,17 @@
+---
+import type { StoryMeta } from '@/types'
+
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import { Framework } from '@/types'
+import CollapsibleSidebarLayoutStory from '@/stories/vue/CollapsibleSidebarLayout.story.vue'
+import code from '@/stories/vue/CollapsibleSidebarLayout.vue?raw'
+
+export const meta: StoryMeta = {
+  name: 'Collapsible Sidebar Layout',
+  framework: Framework.Vue,
+}
+---
+
+<ComponentLayout subtitle={meta.name} code={code}>
+  <CollapsibleSidebarLayoutStory client:only />
+</ComponentLayout>

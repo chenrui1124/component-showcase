@@ -6,6 +6,7 @@
 
 @theme {
   --font-code: 'Geist Mono', 'SF Mono', 'Noto Sans Mono', var(--font-mono), var(--font-sans);
+  --font-text: 'Tahoma', var(--font-sans);
 
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 
